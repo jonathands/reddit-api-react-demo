@@ -34,12 +34,9 @@ class Post extends Component {
         if (e.target.value == null || this.state.subs.length == 0) {
             return;
         }
-
-        this.state.subs.each as sub)
-        {
-
-        }
-
+    
+        this.state.subs.forEach((sub) => {
+        });
     }
 
     render() {
@@ -50,7 +47,7 @@ class Post extends Component {
                 <h1>Posting to {this.state.sub.join(', /r/')}</h1>
 
                 <label>Title: </label>
-                <input id="title"  value={link}/>
+                <input id="title"  value={title}/>
                 <label>Link: </label>
                 <input id="link" value={link}/>
                 <label>Text: </label>
