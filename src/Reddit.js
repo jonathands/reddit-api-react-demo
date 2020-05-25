@@ -25,10 +25,6 @@ class Reddit extends Component {
         this.fetchSub();
     }
 
-    componentWillUnmount()
-    {
-    }
-
     fetchSub() {
         this.setState({ loading: true });
         axios.get(`https://www.reddit.com/r/${this.state.sub}.json`).then(res => {
