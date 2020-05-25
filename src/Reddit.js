@@ -1,12 +1,14 @@
 
 import axios from "axios";
 import React, { Component } from 'react';
+import 'materialize-css';
+import { Button, Icon } from 'react-materialize';
 
 class Reddit extends Component {
     constructor() {
         super();
 
-        const subs =  ['java', 'javascript', 'php', 'csharp', 'react'];
+        const subs = ['java', 'javascript', 'php', 'csharp', 'react'];
 
         this.state = {
             subs: subs,
@@ -54,16 +56,21 @@ class Reddit extends Component {
             return <div> Loading ... </div>;
         }
 
-        return (
-            <ul>
+        return (   
+            <div class="row">
                 {posts.map(post => {
                     return (
-                        <li key={post.id}>
+                        <>
+                        <div className="col s10">
                             <a href={`${post.url}`}>{post.title}</a> - by <a target="_blank" rel="noopener noreferrer" href={`https://reddit.com/u/${post.author}`}>{post.author}</a>
-                        </li>
+                        </div>
+                        <div className="col s2">
+                            <Icon tiny>insert_chart</Icon>
+                        </div>
+                        </>
                     );
                 })}
-            </ul>
+            </div>
         );
     }
 
@@ -74,6 +81,7 @@ class Reddit extends Component {
             <div>
                 <label>SubReddits: </label>
                 <input id="sublist" onBlur={this.changeSubs} defaultValue={subs.join(',')} />
+                <Button onClick={this.changeSubs} defaultValue="Refresh">Refresh</Button>
                 <h1>/r/{this.state.sub}</h1>
                 {this.getList(posts)}
             </div>

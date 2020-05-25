@@ -20,13 +20,23 @@ class Post extends Component {
     }
 
 
-    post() {
+    post(sub) {
+        //https://www.reddit.com/dev/api#POST_api_submit
         this.setState({ loading: true });
-        axios.get(`https://www.reddit.com/r/${this.state.sub}.json`).then(res => {
-            this.setState({ subPosts: res.data.data.children.map(obj => obj.data), loading: false });
-        }).catch(err => {
-            console.error(err + " : fetching another sub");
-        });
+        axios.post(`https://www.reddit.com/api/submit`,
+            {
+                sr: sub,
+                title: 'Marlon',
+                kind: (this.state.link !== null) ? 'link' : 'text',
+                link: '',
+                text: ''
+            })
+            .then(res => {
+                
+            })
+            .catch(err => {
+                console.error(err + " : fetching another sub");
+            });
     }
 
     postAll = e => {
