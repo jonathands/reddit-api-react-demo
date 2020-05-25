@@ -3,17 +3,16 @@ import axios from "axios";
 import React, { Component } from 'react';
 
 class Post extends Component {
-    state = {
-        subs: [],
-        body: '',
-        title: '',
-        link: '',
-        loading: true
-    }
 
-    constructor(props) {
-        super();
-        const subs = this.props.subs;
+    constructor(props = []) {
+        super(props);
+        this.state = {
+            subs: props.subs,
+            body: '',
+            title: '',
+            link: '',
+            loading: true
+        }
     }
 
     componentDidMount() {
@@ -34,26 +33,23 @@ class Post extends Component {
         if (e.target.value == null || this.state.subs.length == 0) {
             return;
         }
-    
+
         this.state.subs.forEach((sub) => {
         });
     }
 
     render() {
         const subs = this.state.subs;
-        const posts = this.state.subPosts;
         return (
             <div>
-                <h1>Posting to {this.state.sub.join(', /r/')}</h1>
-
+                <h1>Posting to {subs}</h1>
                 <label>Title: </label>
-                <input id="title"  value={title}/>
+                <input id="title" value={this.state.title} />
                 <label>Link: </label>
-                <input id="link" value={link}/>
+                <input id="link" value={this.state.link} />
                 <label>Text: </label>
-                <textarea id="message">{body}</textarea>
-
-                <button className="postAll" onClick={postAll}>Post to subs</button>
+                <textarea id="message">{this.state.body}</textarea>
+                <button className="postAll" onClick={this.postAll}>Post to subs</button>
             </div>
         );
     }

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 class Config extends Component {
+
     constructor() {
         super();
-
-        this.setState({ token: '' });
+        this.state = { token : '' };
     }
 
     setToken = e =>  {
@@ -21,7 +21,7 @@ class Config extends Component {
         return (
             <div>
                 <label>Token: </label>
-                <input id="token" defaultValue={token} onblur={setToken}/>
+                <input id="token" defaultValue={token} onblur={this.setToken}/>
             </div>
         );
     }

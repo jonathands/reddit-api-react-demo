@@ -3,16 +3,18 @@ import axios from "axios";
 import React, { Component } from 'react';
 
 class Reddit extends Component {
-    state = {
-        subs: ['java', 'javascript', 'php', 'csharp', 'react'],
-        subPosts: [],
-        sub: '',
-        loading: true
-    }
-
     constructor() {
         super();
-        const subs = this.state.subs;
+
+        const subs =  ['java', 'javascript', 'php', 'csharp', 'react'];
+
+        this.state = {
+            subs: subs,
+            subPosts: [],
+            sub: '',
+            loading: true
+        }
+
         this.state.sub = this.getRandomSub(subs);
     }
 
@@ -30,9 +32,9 @@ class Reddit extends Component {
         axios.get(`https://www.reddit.com/r/${this.state.sub}.json`).then(res => {
             this.setState({ subPosts: res.data.data.children.map(obj => obj.data), loading: false });
         }).catch(err => {
-            console.error(err+" : fetching another sub");
+            console.error(err + " : fetching another sub");
             this.getRandomSub(this.state.subs);
-            this.fetchSub();    
+            this.fetchSub();
         });
     }
 
@@ -48,8 +50,7 @@ class Reddit extends Component {
     }
 
     getList(posts) {
-        if(this.state.loading)
-        {
+        if (this.state.loading) {
             return <div> Loading ... </div>;
         }
 
