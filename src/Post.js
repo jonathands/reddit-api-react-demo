@@ -1,6 +1,8 @@
 
 import axios from "axios";
 import React, { Component } from 'react';
+import 'materialize-css';
+import { Button } from 'react-materialize';
 
 class Post extends Component {
 
@@ -26,7 +28,7 @@ class Post extends Component {
         axios.post(`https://www.reddit.com/api/submit`,
             {
                 sr: sub,
-                title: 'Marlon',
+                title: '',
                 kind: (this.state.link !== null) ? 'link' : 'text',
                 link: '',
                 text: ''
@@ -40,7 +42,7 @@ class Post extends Component {
     }
 
     postAll = e => {
-        if (e.target.value == null || this.state.subs.length == 0) {
+        if (e.target.value === null || this.state.subs.length === 0) {
             return;
         }
 
@@ -54,12 +56,12 @@ class Post extends Component {
             <div>
                 <h1>Posting to {subs}</h1>
                 <label>Title: </label>
-                <input id="title" value={this.state.title} />
+                <input id="title" defaultValue={this.state.title} />
                 <label>Link: </label>
-                <input id="link" value={this.state.link} />
+                <input id="link" defaultValue={this.state.link} />
                 <label>Text: </label>
-                <textarea id="message">{this.state.body}</textarea>
-                <button className="postAll" onClick={this.postAll}>Post to subs</button>
+                <textarea id="message" defaultValue={this.state.body}></textarea>
+                <Button className="postAll" onClick={this.postAll} >Post to subs</Button>
             </div>
         );
     }

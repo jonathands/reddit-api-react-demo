@@ -2,7 +2,8 @@
 import axios from "axios";
 import React, { Component } from 'react';
 import 'materialize-css';
-import { Button, Icon } from 'react-materialize';
+import { Button, Row } from 'react-materialize';
+import LaunchIcon from '@material-ui/icons/Launch';
 
 class Reddit extends Component {
     constructor() {
@@ -57,17 +58,17 @@ class Reddit extends Component {
         }
 
         return (   
-            <div class="row">
+            <div>
                 {posts.map(post => {
                     return (
-                        <>
+                        <Row key={`p${post.id}`} >
                         <div className="col s10">
                             <a href={`${post.url}`}>{post.title}</a> - by <a target="_blank" rel="noopener noreferrer" href={`https://reddit.com/u/${post.author}`}>{post.author}</a>
                         </div>
                         <div className="col s2">
-                            <Icon tiny>insert_chart</Icon>
+                            <LaunchIcon fontSize="inherit" />
                         </div>
-                        </>
+                        </Row>
                     );
                 })}
             </div>
